@@ -1,4 +1,4 @@
-import SnippetFragment from "@/components/snippetFragment";
+
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -7,6 +7,7 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
+import Navbar from "@/components/ui/navbar";
 import { db } from "@/db";
 import Link from "next/link";
 
@@ -42,13 +43,20 @@ export default async function Home() {
     );
   });
   return (
+
     <div>
       {/* <Link href={"/snippets/new"}>
         <Button variant="outline">New</Button>
       </Link> */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-5">
+      <Button className="my-5">
+        <Link href="/snippets/new">New</Link>
+      </Button>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
+
         {renderedSnippets}
       </div>
     </div>
+
+
   );
 }

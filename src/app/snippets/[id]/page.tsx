@@ -2,6 +2,7 @@ import * as actions from "@/actions";
 import SnippetFragment from "@/components/snippetFragment";
 import { Button } from "@/components/ui/button";
 import { db } from "@/db";
+import { ArrowBigLeft } from "lucide-react";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 
@@ -24,8 +25,11 @@ export default async function SnippetShowPage(props: Props) {
 
   const deleteSnippet = actions.deleteSnippet.bind(null, snippet.id);
 
-  return (
-    <div className="h-100 flex items-center">
+  return (<>
+  <Button>
+    <Link href={'/'}><ArrowBigLeft /></Link>
+  </Button>
+    <div className="h-100 flex items-center mt-16">
       <div className="bg-[hsl(var(--background))] text-[hsl(var(--foreground))] p-6 rounded-lg shadow-lg w-6/12 mx-auto">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center">
@@ -33,24 +37,10 @@ export default async function SnippetShowPage(props: Props) {
             <span className="text-sm font-medium">JavaScript</span>
           </div>
           <h2 className="text-lg font-bold">{snippet.title}</h2>
-          {/* <DropdownMenu>
-        <DropdownMenuTrigger>
-          <Button variant="ghost" size="icon">
-            <ion-icon name="ellipsis-horizontal" class="text-xl"></ion-icon>
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent>
-          <DropdownMenuItem>Edit</DropdownMenuItem>
-          <DropdownMenuItem>Delete</DropdownMenuItem>
-          <DropdownMenuItem>Export</DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu> */}
+
         </div>
 
-        <div className="bg-gray-200 rounded-md p-4 mb-4 overflow-x-auto">
-          {/* <pre className="text-sm font-mono">
-            <code>{snippet.code}</code>
-          </pre> */}
+        <div className="rounded-md mb-4 overflow-x-auto shadow">
           <SnippetFragment
             id={snippet.id}
             title={snippet.title}
@@ -76,5 +66,7 @@ export default async function SnippetShowPage(props: Props) {
         </div>
       </div>
     </div>
+  </>
+
   );
 }

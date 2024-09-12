@@ -1,4 +1,5 @@
-import {db} from "@/db";
+import { db } from "@/db";
+import Link from "next/link";
 
 export default async function Home() {
   const snippets = await db.snippet.findMany();
@@ -8,12 +9,14 @@ export default async function Home() {
       <div key={snippet.id} className="border p-2 m-2 rounded">
         <h3 className="font-bold">{snippet.title}</h3>
         <pre>{snippet.code}</pre>
+        <Link href={`/snippets/${snippet.id}`}>Show</Link>
       </div>
     );
   });
   return (
-   <div>
-    {renderedSnippets}
-   </div>
+    <div>
+      <Link href={"/snippets/new"}>New</Link>
+      {renderedSnippets}
+    </div>
   );
 }

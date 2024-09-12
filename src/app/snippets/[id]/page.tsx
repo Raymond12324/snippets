@@ -1,6 +1,8 @@
+import * as actions from "@/actions";
 import { db } from "@/db";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
+
 interface Props {
   params: {
     id: string;
@@ -18,6 +20,8 @@ export default async function SnippetShowPage(props: Props) {
   if (!snippet) {
     return notFound();
   }
+
+  const deleteSnippet = actions.deleteSnippet.bind(null, snippet.id);
 
   return (
     <div className="h-screen flex items-center">
@@ -56,7 +60,11 @@ export default async function SnippetShowPage(props: Props) {
             >
               Editar
             </Link>
-            <button className="border pl-3 pr-3">Eliminar</button>
+            <form action={deleteSnippet}>
+              <button className="border pl-3 pr-3" type="submit">
+                Eliminar
+              </button>
+            </form>
           </div>
 
           <div>Added: 2 days ago • Views: 128</div>

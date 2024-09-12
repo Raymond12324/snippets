@@ -18,7 +18,6 @@ export default function SnippetEditForm({ snippet }: SnippetEditFormProps) {
     startTransition(async () => {
       await editSnippet(snippet.id, code);
     });
-    redirect(`/snippets/${snippet.id}`);
   };
 
   const [code, setCode] = useState(snippet.code);

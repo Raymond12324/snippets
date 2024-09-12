@@ -1,4 +1,6 @@
 import * as actions from "@/actions";
+import SnippetFragment from "@/components/snippetFragment";
+import { Button } from "@/components/ui/button";
 import { db } from "@/db";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
@@ -24,7 +26,7 @@ export default async function SnippetShowPage(props: Props) {
   const deleteSnippet = actions.deleteSnippet.bind(null, snippet.id);
 
   return (
-    <div className="h-screen flex items-center">
+    <div className="h-100 flex items-center">
       <div className="bg-[hsl(var(--background))] text-[hsl(var(--foreground))] p-6 rounded-lg shadow-lg w-6/12 mx-auto">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center">
@@ -47,23 +49,27 @@ export default async function SnippetShowPage(props: Props) {
         </div>
 
         <div className="bg-gray-200 rounded-md p-4 mb-4 overflow-x-auto">
-          <pre className="text-sm font-mono">
+          {/* <pre className="text-sm font-mono">
             <code>{snippet.code}</code>
-          </pre>
+          </pre> */}
+          <SnippetFragment
+            id={snippet.id}
+            title={snippet.title}
+            code={snippet.code}
+          />
         </div>
 
         <div className="flex justify-between space-bweent mt-4 text-right text-sm text-[hsl(var(--muted-foreground))]">
-          <div>
-            <Link
-              href={`/snippets/${snippet.id}/edit`}
-              className="border pl-3 pr-3 mr-2"
-            >
-              Editar
+          <div className="flex">
+            <Link className="mr-2" href={`/snippets/${snippet.id}/edit`}>
+              <Button variant="outline" size="sm">
+                Editar
+              </Button>
             </Link>
             <form action={deleteSnippet}>
-              <button className="border pl-3 pr-3" type="submit">
+              <Button className="bg-red-300" size="sm" type="submit">
                 Eliminar
-              </button>
+              </Button>
             </form>
           </div>
 

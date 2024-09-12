@@ -5,6 +5,7 @@ import { Snippet } from "@prisma/client";
 import { startTransition, useState } from "react";
 import { editSnippet } from "@/actions";
 import { redirect } from "next/navigation";
+import { Button } from "./ui/button";
 
 interface SnippetEditFormProps {
   snippet: Snippet;
@@ -25,7 +26,7 @@ export default function SnippetEditForm({ snippet }: SnippetEditFormProps) {
   return (
     <div>
       <Editor
-        height="40vh"
+        height="80vh"
         theme="vs-dark"
         language="javascript"
         defaultValue={snippet.code}
@@ -36,12 +37,9 @@ export default function SnippetEditForm({ snippet }: SnippetEditFormProps) {
         onChange={handleEditorChange}
       />
       <form action={editSnippetAction}>
-        <button
-          type="submit"
-          className="rounded p-2 bg-blue-200 hover:bg-blue-300"
-        >
+        <Button className="mt-2 w-full px-4" size={"sm"} type="submit">
           Edit
-        </button>
+        </Button>
       </form>
     </div>
   );

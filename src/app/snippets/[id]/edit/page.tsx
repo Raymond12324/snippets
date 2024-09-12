@@ -22,8 +22,6 @@ export default async function SnippetEditPage(props: Props) {
 
   return (
     <div>
-      <h1>Edit Snippet</h1>
-
       <SnippetEditForm snippet={snippet} />
     </div>
   );

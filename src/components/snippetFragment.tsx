@@ -10,9 +10,10 @@ export default function SnippetFragment(snippet: Snippet) {
       language="javascript"
       defaultValue={snippet.code}
       options={{
-        minimap: { enabled: false },
-        fontSize: 8,
+        minimap: { enabled: true },
+        fontSize: 12,
         readOnly: true,
+        padding: { top: 10, bottom: 10 },
       }}
     />
   );

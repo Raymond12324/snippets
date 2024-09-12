@@ -16,7 +16,6 @@ async function createSnippet( formData : FormData ) {
             code,
         }
     });
-    console.log(snippet)
     redirect('/')
 }
 

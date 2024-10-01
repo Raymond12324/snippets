@@ -9,12 +9,13 @@ import {
 } from "@/components/ui/card";
 import Navbar from "@/components/ui/navbar";
 import { db } from "@/db";
+import { pb } from "@/lib/pb";
 import Link from "next/link";
 
 export default async function Home() {
-  const snippets = await db.snippet.findMany();
+  const snippets = await pb.collection('snippets').getList(1, 50);
 
-  const renderedSnippets = snippets.map((snippet) => {
+  const renderedSnippets = snippets.items.map((snippet) => {
     return (
       <Card
         key={snippet.id}
@@ -23,7 +24,7 @@ export default async function Home() {
         <CardHeader>
           <div className="flex items-center justify-between">
             <h3 className="text-lg font-semibold">
-              {snippet.title} {snippet.id}
+              {snippet.title}
             </h3>
             <Badge>JavaScript</Badge>
           </div>
